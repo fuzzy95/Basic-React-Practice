@@ -4,7 +4,6 @@ import Person from './Person/Person';
 
 
 class App extends Component {
-
 	state = {
 		persons: [
 			{ name: 'Max', age: 28 },
@@ -37,6 +36,15 @@ class App extends Component {
 	}
 
 	render() {
+		const style = {
+			backgroundColor: 'white',
+			font: 'inherit',
+			border: '1px solid blue',
+			padding: '8px',
+			cursor: 'pointer',
+			margin: '2px'
+		};
+
 		return (
 			<div className="App">
 				<h1>Hi, I am FuzzY!</h1>
@@ -47,7 +55,7 @@ class App extends Component {
 					Switch Name
 				</button> */}
 
-				<button onClick={() => this.switchNameHandler("FuzzY!!")}>
+				<button style={style} onClick={() => this.switchNameHandler("FuzzY!!")}>
 					Switch Name
 				</button>
 
@@ -73,7 +81,6 @@ class App extends Component {
 	}
 
 	// return React.createElement('div', null, React.createElement('h1', { className: 'App' }, 'Does this work now?'), 'h1', 'Hi, I am FuzzY');
-
 }
 
 export default App;
