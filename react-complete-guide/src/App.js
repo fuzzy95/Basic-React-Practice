@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Person from './Person/Person';
+import Radium from 'radium';
 
 
 class App extends Component {
@@ -48,7 +49,8 @@ class App extends Component {
 
 	render() {
 		const style = {
-			backgroundColor: 'white',
+			backgroundColor: 'purple',
+			color: 'white',
 			font: 'inherit',
 			border: '1px solid blue',
 			padding: '8px',
@@ -71,38 +73,39 @@ class App extends Component {
 					})}
 				</div>
 			);
+
+			style.backgroundColor = 'red';
+		}
+
+		let classes = [];
+		if (this.state.persons.length <= 2) {
+			classes.push('red');
+		}
+		if (this.state.persons.length <= 1) {
+			classes.push('bold');
 		}
 
 		return (
 			<div className="App" >
-				<h1>Hi, I am FuzzY!</h1>
+				<h1>
+					Hi, I am FuzzY!
+				</h1>
 
-				<p>This is bullshit!</p>
-
-				{/* <button onClick={this.switchNameHandler.bind(this, 'FuzzY')}>
-					Switch Name
-				</button> */}
-				{/* <button style={style} onClick={() => this.switchNameHandler("FuzzY!!")}>
-					Switch Name
-				</button> */}
+				<p className={classes.join(' ')}>
+					This is bullshit!
+				</p>
 
 				<button style={style} onClick={this.togglePersonsHandler} >
 					Switch Name
 				</button>
 
-				{/* <Person name="Mithun" age="28" />
-					<Person name="Honu" age="82">My Hobbies: Racing</Person>
-					<Person name="Jack" age="33" /> */}
-
 				{persons}
 			</div>
 		);
 	}
-
-	// return React.createElement('div', null, React.createElement('h1', { className: 'App' }, 'Does this work now?'), 'h1', 'Hi, I am FuzzY');
 }
 
-export default App;
+export default Radium(App);
 
 //-----------------Example of React HOOK------------------------
 // const [personsState, setPersonsState] = useState({
@@ -123,6 +126,18 @@ export default App;
 // 		]
 // 	});
 // };
+
+// {/* <button onClick={this.switchNameHandler.bind(this, 'FuzzY')}>
+// 					Switch Name
+// 				</button> */}
+// {/* <button style={style} onClick={() => this.switchNameHandler("FuzzY!!")}>
+// 					Switch Name
+// 				</button> */}
+// {/* <Person name="Mithun" age="28" />
+// 					<Person name="Honu" age="82">My Hobbies: Racing</Person>
+// 					<Person name="Jack" age="33" /> */}
+
+// return React.createElement('div', null, React.createElement('h1', { className: 'App' }, 'Does this work now?'), 'h1', 'Hi, I am FuzzY');
 
 //-------------------SwitchHandler for default state management---------
 // switchNameHandler = (newName) => {
@@ -187,3 +202,6 @@ export default App;
 // 		{ name: 'Jack Sparrow', age: 8 }
 // 	]
 // });
+
+//---------------------dynamic styling without dynamic nature------------------------
+// let classes = ['red', 'bold'].join(' ');
