@@ -1,6 +1,22 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
 import './App.css';
 import Person from './Person/Person';
+
+const StyleButton = styled.button`
+	background-color: ${props => props.alt ? 'red' : 'purple'};
+	color: white;
+	font: inherit;
+	border: 1px solid blue;
+	padding: 8px;
+	cursor: pointer;
+	margin: 2px;
+	
+	&:hover {
+		background-color: ${props => props.alt ? 'salmon' : 'lightgreen'};
+		color: black;
+	}	
+`;
 
 
 class App extends Component {
@@ -102,9 +118,11 @@ class App extends Component {
 					This is bullshit!
 				</p>
 
-				<button style={style} onClick={this.togglePersonsHandler} >
+				<StyleButton
+					alt={this.state.showPersons}
+					onClick={this.togglePersonsHandler} >
 					Switch Name
-				</button>
+				</StyleButton>
 
 				{persons}
 			</div>
@@ -212,3 +230,14 @@ export default App;
 
 //---------------------dynamic styling without dynamic nature------------------------
 // let classes = ['red', 'bold'].join(' ');
+
+//---------------------inline style-----------------------------------
+// {/* <button style={style} onClick={this.togglePersonsHandler} >
+// 	Switch Name
+// </button> */}
+
+// style.backgroundColor = 'red';
+// 			style[':hover'] = {
+// 				backgroundColor: 'salmon',
+// 				color: 'black'
+// 			}
