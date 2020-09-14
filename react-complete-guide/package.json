@@ -10,7 +10,8 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.3",
-    "redium": "^0.6.2"
+    "redium": "^0.6.2",
+    "styled-components": "^5.2.0"
   },
   "scripts": {
     "start": "react-scripts start",
