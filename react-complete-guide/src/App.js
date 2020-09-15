@@ -1,23 +1,7 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
-import './App.css';
+// import styled from 'styled-components';
+import classes from './App.css';
 import Person from './Person/Person';
-
-const StyleButton = styled.button`
-	background-color: ${props => props.alt ? 'red' : 'purple'};
-	color: white;
-	font: inherit;
-	border: 1px solid blue;
-	padding: 8px;
-	cursor: pointer;
-	margin: 2px;
-	
-	&:hover {
-		background-color: ${props => props.alt ? 'salmon' : 'lightgreen'};
-		color: black;
-	}	
-`;
-
 
 class App extends Component {
 	state = {
@@ -63,21 +47,8 @@ class App extends Component {
 	}
 
 	render() {
-		const style = {
-			backgroundColor: 'purple',
-			color: 'white',
-			font: 'inherit',
-			border: '1px solid blue',
-			padding: '8px',
-			cursor: 'pointer',
-			margin: '2px',
-			':hover': {
-				backgroundColor: 'lightgreen',
-				color: 'black'
-			}
-		};
-
 		let persons = null;
+		let btnClass = '';
 
 		if (this.state.showPersons) {
 			persons = (
@@ -93,36 +64,33 @@ class App extends Component {
 				</div>
 			);
 
-			style.backgroundColor = 'red';
-			style[':hover'] = {
-				backgroundColor: 'salmon',
-				color: 'black'
-			}
+			btnClass = classes.Red;
 		}
 
-		let classes = [];
+
+		let assignClasses = [];
 		if (this.state.persons.length <= 2) {
-			classes.push('red');
+			assignClasses.push(classes.red);
 		}
 		if (this.state.persons.length <= 1) {
-			classes.push('bold');
+			assignClasses.push(classes.bold); // before css modules>> assignClasses.push('bold');
 		}
 
 		return (
-			<div className="App" >
+			<div className={classes.App} >
 				<h1>
 					Hi, I am FuzzY!
 				</h1>
 
-				<p className={classes.join(' ')}>
+				<p className={assignClasses.join(' ')}>
 					This is bullshit!
 				</p>
 
-				<StyleButton
-					alt={this.state.showPersons}
+				<button
+					className={btnClass}
 					onClick={this.togglePersonsHandler} >
 					Switch Name
-				</StyleButton>
+				</button>
 
 				{persons}
 			</div>
@@ -235,6 +203,43 @@ export default App;
 // {/* <button style={style} onClick={this.togglePersonsHandler} >
 // 	Switch Name
 // </button> */}
+
+// style.backgroundColor = 'red';
+// 			style[':hover'] = {
+// 				backgroundColor: 'salmon',
+// 				color: 'black'
+// 			}
+
+//----------------------styled component--------------------------------------
+// const StyleButton = styled.button`
+// 	background-color: ${props => props.alt ? 'red' : 'purple'};
+// 	color: white;
+// 	font: inherit;
+// 	border: 1px solid blue;
+// 	padding: 8px;
+// 	cursor: pointer;
+// 	margin: 2px;
+
+// 	&:hover {
+// 		background-color: ${props => props.alt ? 'salmon' : 'lightgreen'};
+// 		color: black;
+// 	}	
+// `;
+
+//-----------------------------Inline styling-----------------------------------
+// const style = {
+// 	backgroundColor: 'purple',
+// 	color: 'white',
+// 	font: 'inherit',
+// 	border: '1px solid blue',
+// 	padding: '8px',
+// 	cursor: 'pointer',
+// 	margin: '2px',
+// 	':hover': {
+// 		backgroundColor: 'lightgreen',
+// 		color: 'black'
+// 	}
+// };
 
 // style.backgroundColor = 'red';
 // 			style[':hover'] = {
